@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=3 uid="uid://d34y6n4yh4awq"]
+
+[ext_resource type="FontFile" uid="uid://3viwgpbdlxmv" path="res://Assets/Tiny5-Regular.ttf" id="1_4b6sl"]
+[ext_resource type="Script" path="res://Scenes/hud.gd" id="1_fctoj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4og2i"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_62i0t"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_21867"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+bg_color = Color(0.0591158, 0.0854143, 0.199324, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Theme" id="Theme_ghsrt"]
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("1_4b6sl")
+Button/styles/focus = SubResource("StyleBoxFlat_4og2i")
+Button/styles/normal = SubResource("StyleBoxFlat_62i0t")
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("1_4b6sl")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_21867")
+
+[node name="HUD" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ghsrt")
+script = ExtResource("1_fctoj")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0470588, 0.0705882, 0.172549, 0.627451)
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -37.0
+offset_right = 35.0
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Pause"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Resume"
+
+[node name="QuitButton" type="Button" parent="PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit
+"

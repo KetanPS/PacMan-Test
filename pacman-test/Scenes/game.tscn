@@ -1,0 +1,574 @@
+[gd_scene load_steps=18 format=4 uid="uid://dpbc5ur1j2fh0"]
+
+[ext_resource type="PackedScene" uid="uid://b8bj48u16uk1i" path="res://Scenes/player.tscn" id="1_8q5r5"]
+[ext_resource type="Script" path="res://Scenes/game.gd" id="1_nmb8g"]
+[ext_resource type="Texture2D" uid="uid://wyh52wk7nkve" path="res://Assets/Sprite/Sprite-0003.png" id="2_lul3b"]
+[ext_resource type="PackedScene" uid="uid://cr7u6yyvxg3c5" path="res://Scenes/point.tscn" id="2_xvkjc"]
+[ext_resource type="Texture2D" uid="uid://duqlhifr1s8x1" path="res://Assets/Sprite/Sprite-0005.png" id="5_aqhjh"]
+[ext_resource type="Texture2D" uid="uid://cdwssayjukm5p" path="res://Assets/Sprite/Sprite-0002.png" id="6_a4evq"]
+[ext_resource type="PackedScene" uid="uid://d34y6n4yh4awq" path="res://Scenes/hud.tscn" id="6_co2uh"]
+[ext_resource type="PackedScene" uid="uid://ctq5lsgpn0nr2" path="res://Scenes/ghost.tscn" id="7_ejsee"]
+[ext_resource type="Texture2D" uid="uid://c0rgnuc3sjyn7" path="res://Assets/Sprite/Sprite-0004.png" id="7_ib636"]
+[ext_resource type="FontFile" uid="uid://3viwgpbdlxmv" path="res://Assets/Tiny5-Regular.ttf" id="10_mfrda"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_kkxxm"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a7sh6"]
+resource_name = "<null>"
+texture = ExtResource("2_lul3b")
+1:0/0 = 0
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_kkxxm")
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, -6, 8, -8, 8, 8, -8, 8)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 6, -6, 8, 8, -8, 8)
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 6, 6, -8, 8)
+5:0/0 = 0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -6, 6)
+6:0/0 = 0
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:0/0 = 0
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:0/0 = 0
+8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -4, 0.125, -5.25, 8, -4, 8, 8, -8, 8)
+9:0/0 = 0
+9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 4, 0, 6, -8, 4)
+10:0/0 = 0
+10:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 2, -8, 4, -8, 6, 0, 4, 8, -8, 8)
+11:0/0 = 0
+11:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, -4, -8, -6, 0, -4, 8, 8, 8)
+12:0/0 = 0
+12:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+13:0/0 = 0
+13:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+14:0/0 = 0
+14:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+15:0/0 = 0
+15:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+16:0/0 = 0
+16:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2, -6, 2, -6, 6, -2, 6, 2, 2, 6, -2, 6, -6, 2, -6, -2)
+
+[sub_resource type="TileSet" id="TileSet_v8mjn"]
+physics_layer_0/collision_layer = 1
+navigation_layer_0/layers = 1
+sources/0 = SubResource("TileSetAtlasSource_a7sh6")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4og2i"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_62i0t"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_21867"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+bg_color = Color(0.0591158, 0.0854143, 0.199324, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Theme" id="Theme_5stri"]
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("10_mfrda")
+Button/styles/focus = SubResource("StyleBoxFlat_4og2i")
+Button/styles/normal = SubResource("StyleBoxFlat_62i0t")
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("10_mfrda")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_21867")
+
+[node name="Game" type="Node"]
+script = ExtResource("1_nmb8g")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." groups=["navigation"]]
+tile_map_data = PackedByteArray("AAABAAAAAAAHAAAAAAACAAAAAAAHAAAAAAADAAAAAAAHAAAAAAADAAEAAAABAAAAAAAEAAEAAAABAAAAAAAEAAAAAAAHAAAAAAAFAAAAAAAHAAAAAAAGAAAAAAAHAAAAAAAHAAAAAAAMAAAAAAAIAAAAAAAHAAAAAAAIAAEAAAABAAAAAAAJAAEAAAABAAAAAAAKAAEAAAABAAAAAAAKAAAAAAAHAAAAAAALAAAAAAAHAAAAAAAMAAAAAAAHAAAAAAANAAAAAAAHAAAAAAAOAAAAAAADAAAAAAAOAAEAAAAGAAAAAAAJAAAAAAAHAAAAAAAAAAEAAAAGAAAAAAAAAAIAAAAGAAAAAAAAAAMAAAAGAAAAAAAAAAQAAAAGAAAAAAAAAAUAAAAGAAAAAAAAAAYAAAAGAAAAAAAAAAcAAAAGAAAAAAAAAAgAAAAGAAAAAAAAAAkAAAAGAAAAAAAAAAoAAAAGAAAAAAAAAAsAAAAOAAAAAAAAAAwAAAAGAAAAAAAAAA0AAAAGAAAAAAAAAA4AAAAGAAAAAAAAAA8AAAAGAAAAAAAAABAAAAAGAAAAAAAAABEAAAAOAAAAAAAAABIAAAAGAAAAAAAAABMAAAAGAAAAAAAAABQAAAAGAAAAAAAAABUAAAAFAAAAAAAAABYAAAABAAAAAAABAAEAAAABAAAAAAABAAIAAAABAAAAAAABAAMAAAABAAAAAAABAAQAAAABAAAAAAABAAUAAAABAAAAAAABAAYAAAABAAAAAAABAAcAAAABAAAAAAABAAgAAAABAAAAAAABAAkAAAABAAAAAAABAAoAAAABAAAAAAABAAsAAAAKAAAAAAABAAwAAAABAAAAAAABAA0AAAABAAAAAAABAA4AAAABAAAAAAABAA8AAAABAAAAAAABABAAAAABAAAAAAABABEAAAAKAAAAAAABABIAAAABAAAAAAABABMAAAABAAAAAAABABQAAAABAAAAAAABABUAAAAHAAAAAAABABYAAAABAAAAAAACAAEAAAABAAAAAAACAAIAAAACAAAAAAACAAMAAAAFAAAAAAACAAQAAAABAAAAAAACAAUAAAAIAAAAAAACAAYAAAAGAAAAAAACAAcAAAAOAAAAAAACAAgAAAAGAAAAAAACAAkAAAAJAAAAAAACAAoAAAABAAAAAAACAAsAAAABAAAAAAACAAwAAAABAAAAAAACAA0AAAALAAAAAAACAA4AAAABAAAAAAACAA8AAAALAAAAAAACABAAAAABAAAAAAACABEAAAABAAAAAAACABIAAAABAAAAAAACABMAAAALAAAAAAACABQAAAABAAAAAAACABUAAAAHAAAAAAACABYAAAABAAAAAAADAAIAAAADAAAAAAADAAMAAAAEAAAAAAADAAQAAAABAAAAAAADAAUAAAABAAAAAAADAAYAAAABAAAAAAADAAcAAAAHAAAAAAADAAgAAAABAAAAAAADAAkAAAABAAAAAAADAAoAAAABAAAAAAADAAsAAAAIAAAAAAADAAwAAAAGAAAAAAADAA0AAAAEAAAAAAADAA4AAAABAAAAAAADAA8AAAADAAAAAAADABAAAAAJAAAAAAADABEAAAABAAAAAAADABIAAAAIAAAAAAADABMAAAANAAAAAAADABQAAAABAAAAAAADABUAAAAHAAAAAAADABYAAAABAAAAAAAEAAIAAAABAAAAAAAEAAMAAAABAAAAAAAEAAQAAAABAAAAAAAEAAUAAAALAAAAAAAEAAYAAAABAAAAAAAEAAcAAAAHAAAAAAAEAAgAAAABAAAAAAAEAAkAAAABAAAAAAAEAAoAAAABAAAAAAAEAAsAAAABAAAAAAAEAAwAAAABAAAAAAAEAA0AAAABAAAAAAAEAA4AAAABAAAAAAAEAA8AAAABAAAAAAAEABAAAAABAAAAAAAEABEAAAABAAAAAAAEABIAAAABAAAAAAAEABMAAAAHAAAAAAAEABQAAAABAAAAAAAEABUAAAAHAAAAAAAEABYAAAABAAAAAAAFAAEAAAABAAAAAAAFAAIAAAAIAAAAAAAFAAMAAAAJAAAAAAAFAAQAAAABAAAAAAAFAAUAAAAHAAAAAAAFAAYAAAABAAAAAAAFAAcAAAAHAAAAAAAFAAgAAAABAAAAAAAFAAkAAAACAAAAAAAFAAoAAAAGAAAAAAAFAAsAAAAFAAAAAAAFAAwAAAABAAAAAAAFAA0AAAALAAAAAAAFAA4AAAABAAAAAAAFAA8AAAALAAAAAAAFABAAAAABAAAAAAAFABEAAAALAAAAAAAFABIAAAABAAAAAAAFABMAAAAKAAAAAAAFABQAAAABAAAAAAAFABUAAAAHAAAAAAAFABYAAAABAAAAAAAGAAEAAAABAAAAAAAGAAIAAAABAAAAAAAGAAMAAAABAAAAAAAGAAQAAAABAAAAAAAGAAUAAAAHAAAAAAAGAAYAAAABAAAAAAAGAAcAAAAKAAAAAAAGAAgAAAABAAAAAAAGAAkAAAAKAAAAAAAGAAoAAAABAAAAAAAGAAsAAAAHAAAAAAAGAAwAAAABAAAAAAAGAA0AAAAHAAAAAAAGAA4AAAABAAAAAAAGAA8AAAAKAAAAAAAGABAAAAABAAAAAAAGABEAAAAHAAAAAAAGABIAAAABAAAAAAAGABMAAAABAAAAAAAGABQAAAABAAAAAAAGABUAAAAHAAAAAAAGABYAAAABAAAAAAAHAAEAAAAGAAAAAAAHAAIAAAAJAAAAAAAHAAMAAAABAAAAAAAHAAQAAAAIAAAAAAAHAAUAAAANAAAAAAAHAAYAAAABAAAAAAAHAAcAAAABAAAAAAAHAAgAAAABAAAAAAAHAAkAAAABAAAAAAAHAAoAAAABAAAAAAAHAAsAAAAHAAAAAAAHAAwAAAABAAAAAAAHAA0AAAAHAAAAAAAHAA4AAAABAAAAAAAHAA8AAAABAAAAAAAHABAAAAABAAAAAAAHABEAAAAMAAAAAAAHABIAAAAGAAAAAAAHABMAAAAJAAAAAAAHABQAAAABAAAAAAAHABUAAAAHAAAAAAAHABYAAAABAAAAAAAIAAIAAAABAAAAAAAIAAMAAAABAAAAAAAIAAQAAAABAAAAAAAIAAUAAAAHAAAAAAAIAAYAAAABAAAAAAAIAAcAAAALAAAAAAAIAAgAAAABAAAAAAAIAAkAAAALAAAAAAAIAAoAAAABAAAAAAAIAAsAAAAHAAAAAAAIAAwAAAABAAAAAAAIAA0AAAAHAAAAAAAIAA4AAAABAAAAAAAIAA8AAAALAAAAAAAIABAAAAABAAAAAAAIABEAAAAHAAAAAAAIABIAAAABAAAAAAAIABMAAAABAAAAAAAIABQAAAABAAAAAAAIABUAAAAHAAAAAAAIABYAAAABAAAAAAAJAAIAAAAIAAAAAAAJAAMAAAAJAAAAAAAJAAQAAAABAAAAAAAJAAUAAAAHAAAAAAAJAAYAAAABAAAAAAAJAAcAAAAHAAAAAAAJAAgAAAABAAAAAAAJAAkAAAADAAAAAAAJAAoAAAAGAAAAAAAJAAsAAAAEAAAAAAAJAAwAAAABAAAAAAAJAA0AAAAKAAAAAAAJAA4AAAABAAAAAAAJAA8AAAAKAAAAAAAJABAAAAABAAAAAAAJABEAAAAKAAAAAAAJABIAAAABAAAAAAAJABMAAAALAAAAAAAJABQAAAABAAAAAAAJABUAAAAHAAAAAAAJABYAAAABAAAAAAAKAAIAAAABAAAAAAAKAAMAAAABAAAAAAAKAAQAAAABAAAAAAAKAAUAAAAKAAAAAAAKAAYAAAABAAAAAAAKAAcAAAAHAAAAAAAKAAgAAAABAAAAAAAKAAkAAAABAAAAAAAKAAoAAAABAAAAAAAKAAsAAAABAAAAAAAKAAwAAAABAAAAAAAKAA0AAAABAAAAAAAKAA4AAAABAAAAAAAKAA8AAAABAAAAAAAKABAAAAABAAAAAAAKABEAAAABAAAAAAAKABIAAAABAAAAAAAKABMAAAAHAAAAAAAKABQAAAABAAAAAAAKABUAAAAHAAAAAAAKABYAAAABAAAAAAALAAEAAAABAAAAAAALAAIAAAACAAAAAAALAAMAAAAFAAAAAAALAAQAAAABAAAAAAALAAUAAAABAAAAAAALAAYAAAABAAAAAAALAAcAAAAHAAAAAAALAAgAAAABAAAAAAALAAkAAAABAAAAAAALAAoAAAABAAAAAAALAAsAAAAIAAAAAAALAAwAAAAGAAAAAAALAA0AAAAFAAAAAAALAA4AAAABAAAAAAALAA8AAAACAAAAAAALABAAAAAJAAAAAAALABEAAAABAAAAAAALABIAAAAIAAAAAAALABMAAAANAAAAAAALABQAAAABAAAAAAALABUAAAAHAAAAAAALABYAAAABAAAAAAAMAAEAAAABAAAAAAAMAAIAAAADAAAAAAAMAAMAAAAEAAAAAAAMAAQAAAABAAAAAAAMAAUAAAAIAAAAAAAMAAYAAAAGAAAAAAAMAAcAAAAPAAAAAAAMAAgAAAAGAAAAAAAMAAkAAAAJAAAAAAAMAAoAAAABAAAAAAAMAAsAAAABAAAAAAAMAAwAAAABAAAAAAAMAA0AAAAKAAAAAAAMAA4AAAABAAAAAAAMAA8AAAAKAAAAAAAMABAAAAABAAAAAAAMABEAAAABAAAAAAAMABIAAAABAAAAAAAMABMAAAAKAAAAAAAMABQAAAABAAAAAAAMABUAAAAHAAAAAAAMABYAAAABAAAAAAANAAEAAAABAAAAAAANAAIAAAABAAAAAAANAAMAAAABAAAAAAANAAQAAAABAAAAAAANAAUAAAABAAAAAAANAAYAAAABAAAAAAANAAcAAAABAAAAAAANAAgAAAABAAAAAAANAAkAAAABAAAAAAANAAoAAAABAAAAAAANAAsAAAALAAAAAAANAAwAAAABAAAAAAANAA0AAAABAAAAAAANAA4AAAABAAAAAAANAA8AAAABAAAAAAANABAAAAABAAAAAAANABEAAAALAAAAAAANABIAAAABAAAAAAANABMAAAABAAAAAAANABQAAAABAAAAAAANABUAAAAHAAAAAAANABYAAAABAAAAAAAOAAIAAAAGAAAAAAAOAAMAAAAGAAAAAAAOAAQAAAAGAAAAAAAOAAUAAAAGAAAAAAAOAAYAAAAGAAAAAAAOAAcAAAAGAAAAAAAOAAgAAAAGAAAAAAAOAAkAAAAGAAAAAAAOAAoAAAAGAAAAAAAOAAsAAAAPAAAAAAAOAAwAAAAGAAAAAAAOAA0AAAAGAAAAAAAOAA4AAAAGAAAAAAAOAA8AAAAGAAAAAAAOABAAAAAGAAAAAAAOABEAAAAPAAAAAAAOABIAAAAGAAAAAAAOABMAAAAGAAAAAAAOABQAAAAGAAAAAAAOABUAAAAEAAAAAAAOABYAAAABAAAAAAAAAAAAAAACAAAAAAA=")
+tile_set = SubResource("TileSet_v8mjn")
+
+[node name="NavigationPoints" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="NavigationPoints"]
+position = Vector2(24, 24)
+
+[node name="Marker2D2" type="Marker2D" parent="NavigationPoints"]
+position = Vector2(216, 24)
+
+[node name="Marker2D3" type="Marker2D" parent="NavigationPoints"]
+position = Vector2(216, 328)
+
+[node name="Marker2D4" type="Marker2D" parent="NavigationPoints"]
+position = Vector2(24, 328)
+
+[node name="Marker2D5" type="Marker2D" parent="NavigationPoints"]
+position = Vector2(120, 232)
+
+[node name="Marker2D6" type="Marker2D" parent="NavigationPoints"]
+position = Vector2(120, 104)
+
+[node name="Points" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Point" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(216, 216)
+
+[node name="Point64" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(216, 200)
+
+[node name="Point65" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(200, 200)
+
+[node name="Point66" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(200, 184)
+
+[node name="Point67" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(200, 168)
+
+[node name="Point68" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(216, 168)
+
+[node name="Point69" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(216, 152)
+
+[node name="Point70" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(216, 136)
+
+[node name="Point71" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(216, 120)
+
+[node name="Point72" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(216, 104)
+
+[node name="Point73" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(216, 88)
+
+[node name="Point74" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(216, 72)
+
+[node name="Point75" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(216, 56)
+
+[node name="Point76" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(216, 40)
+
+[node name="Point77" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(216, 24)
+
+[node name="Point78" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(200, 24)
+
+[node name="Point79" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(184, 24)
+
+[node name="Point80" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(168, 24)
+
+[node name="Point81" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(152, 24)
+
+[node name="Point82" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(136, 24)
+
+[node name="Point83" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(136, 40)
+
+[node name="Point84" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(136, 56)
+
+[node name="Point85" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(136, 72)
+
+[node name="Point86" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(152, 72)
+
+[node name="Point87" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(168, 72)
+
+[node name="Point88" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(168, 56)
+
+[node name="Point89" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(168, 40)
+
+[node name="Point90" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(184, 72)
+
+[node name="Point91" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(200, 72)
+
+[node name="Point92" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(184, 88)
+
+[node name="Point93" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(184, 104)
+
+[node name="Point94" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(152, 104)
+
+[node name="Point95" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(168, 104)
+
+[node name="Point96" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(136, 104)
+
+[node name="Point97" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(120, 104)
+
+[node name="Point98" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(104, 104)
+
+[node name="Point99" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(88, 104)
+
+[node name="Point100" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(72, 104)
+
+[node name="Point101" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(56, 104)
+
+[node name="Point102" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(56, 88)
+
+[node name="Point103" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(56, 72)
+
+[node name="Point104" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(72, 72)
+
+[node name="Point105" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(88, 72)
+
+[node name="Point106" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(104, 72)
+
+[node name="Point107" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(104, 56)
+
+[node name="Point108" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(120, 56)
+
+[node name="Point109" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(104, 40)
+
+[node name="Point110" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(104, 24)
+
+[node name="Point111" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(88, 24)
+
+[node name="Point112" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(72, 24)
+
+[node name="Point113" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(72, 40)
+
+[node name="Point114" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(72, 56)
+
+[node name="Point115" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(56, 24)
+
+[node name="Point116" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(40, 24)
+
+[node name="Point117" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(24, 24)
+
+[node name="Point118" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(24, 40)
+
+[node name="Point119" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(24, 56)
+
+[node name="Point120" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(24, 72)
+
+[node name="Point121" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(40, 72)
+
+[node name="Point122" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(24, 88)
+
+[node name="Point123" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(24, 104)
+
+[node name="Point124" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(24, 120)
+
+[node name="Point125" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(24, 136)
+
+[node name="Point126" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(24, 152)
+
+[node name="Point127" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(24, 168)
+
+[node name="Point128" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(40, 168)
+
+[node name="Point129" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(40, 184)
+
+[node name="Point130" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(40, 200)
+
+[node name="Point131" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(24, 200)
+
+[node name="Point132" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(24, 216)
+
+[node name="Point2" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(168, 232)
+
+[node name="Point3" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(168, 248)
+
+[node name="Point4" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(168, 264)
+
+[node name="Point5" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(152, 264)
+
+[node name="Point6" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(136, 264)
+
+[node name="Point7" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(120, 264)
+
+[node name="Point8" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(104, 264)
+
+[node name="Point9" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(88, 264)
+
+[node name="Point10" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(72, 264)
+
+[node name="Point11" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(72, 280)
+
+[node name="Point12" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(72, 296)
+
+[node name="Point13" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(88, 296)
+
+[node name="Point14" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(104, 296)
+
+[node name="Point15" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(104, 312)
+
+[node name="Point16" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(104, 328)
+
+[node name="Point17" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(88, 328)
+
+[node name="Point18" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(72, 328)
+
+[node name="Point19" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(56, 328)
+
+[node name="Point20" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(40, 328)
+
+[node name="Point21" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(24, 328)
+
+[node name="Point22" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(24, 312)
+
+[node name="Point23" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(24, 296)
+
+[node name="Point24" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(40, 296)
+
+[node name="Point25" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(40, 280)
+
+[node name="Point26" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(56, 280)
+
+[node name="Point27" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(40, 264)
+
+[node name="Point28" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(24, 264)
+
+[node name="Point29" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(24, 248)
+
+[node name="Point30" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(24, 232)
+
+[node name="Point31" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(40, 232)
+
+[node name="Point32" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(56, 232)
+
+[node name="Point33" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(72, 232)
+
+[node name="Point34" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(72, 248)
+
+[node name="Point35" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(88, 232)
+
+[node name="Point36" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(104, 232)
+
+[node name="Point37" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(120, 232)
+
+[node name="Point38" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(136, 232)
+
+[node name="Point39" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(184, 232)
+
+[node name="Point40" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(152, 232)
+
+[node name="Point41" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(120, 248)
+
+[node name="Point42" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(200, 232)
+
+[node name="Point43" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(216, 232)
+
+[node name="Point44" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(216, 248)
+
+[node name="Point45" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(216, 264)
+
+[node name="Point46" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(200, 264)
+
+[node name="Point47" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(200, 280)
+
+[node name="Point48" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(184, 280)
+
+[node name="Point49" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(168, 280)
+
+[node name="Point50" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(168, 296)
+
+[node name="Point51" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(152, 296)
+
+[node name="Point52" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(136, 296)
+
+[node name="Point53" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(136, 312)
+
+[node name="Point54" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(136, 328)
+
+[node name="Point55" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(152, 328)
+
+[node name="Point56" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(120, 328)
+
+[node name="Point57" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(168, 328)
+
+[node name="Point58" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(184, 328)
+
+[node name="Point59" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(200, 328)
+
+[node name="Point60" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(216, 328)
+
+[node name="Point61" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(216, 312)
+
+[node name="Point62" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(216, 296)
+
+[node name="Point63" parent="Points" instance=ExtResource("2_xvkjc")]
+position = Vector2(200, 296)
+
+[node name="Player" parent="." instance=ExtResource("1_8q5r5")]
+position = Vector2(120, 200)
+
+[node name="Ghost" parent="." node_paths=PackedStringArray("player", "navigation_points") instance=ExtResource("7_ejsee")]
+position = Vector2(104, 168)
+player = NodePath("../Player")
+navigation_points = NodePath("../NavigationPoints")
+
+[node name="Ghost2" parent="." node_paths=PackedStringArray("player", "navigation_points") instance=ExtResource("7_ejsee")]
+position = Vector2(120, 168)
+player = NodePath("../Player")
+navigation_points = NodePath("../NavigationPoints")
+alternative_texture = ExtResource("6_a4evq")
+
+[node name="Ghost3" parent="." node_paths=PackedStringArray("player", "navigation_points") instance=ExtResource("7_ejsee")]
+position = Vector2(136, 168)
+player = NodePath("../Player")
+navigation_points = NodePath("../NavigationPoints")
+alternative_texture = ExtResource("7_ib636")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Lifes" type="Node2D" parent="CanvasLayer"]
+unique_name_in_owner = true
+
+[node name="Sprite1" type="Sprite2D" parent="CanvasLayer/Lifes"]
+position = Vector2(40, 360)
+texture = ExtResource("5_aqhjh")
+
+[node name="Sprite2" type="Sprite2D" parent="CanvasLayer/Lifes"]
+position = Vector2(24, 360)
+texture = ExtResource("5_aqhjh")
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("6_co2uh")]
+visible = false
+
+[node name="StartLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -56.0
+offset_right = 26.0
+offset_bottom = -38.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_5stri")
+theme_override_colors/font_color = Color(0.88, 0.792, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Ready?"
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+process_mode = 3
+one_shot = true
+autostart = true
